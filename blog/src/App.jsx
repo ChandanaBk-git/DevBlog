@@ -1,17 +1,22 @@
-import React, { useState } from "react";
-import Login from "./components/Login";
-import Register from "./components/Register";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import ForgotPassword from "./pages/ForgotPassword";
 
 function App() {
-  const [showLogin, setShowLogin] = useState(true);
-
   return (
-    <div>
-      <button onClick={() => setShowLogin(true)}>Login</button>
-      <button onClick={() => setShowLogin(false)}>Register</button>
+    <BrowserRouter>
+      <Routes>
+        {/* Default page */}
+        <Route path="/" element={<Login />} />
 
-      {showLogin ? <Login /> : <Register />}
-    </div>
+        {/* Auth pages */}
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

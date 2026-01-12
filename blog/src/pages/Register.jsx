@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 
 function Register() {
   const [name, setName] = useState("");
@@ -7,46 +8,44 @@ function Register() {
 
   const handleRegister = (e) => {
     e.preventDefault();
-    console.log("Name:", name);
-    console.log("Email:", email);
-    console.log("Password:", password);
-    alert("Registration submitted (check console)");
+    alert(`Registered user: ${name}`);
   };
 
   return (
-    <div style={{ width: "300px", margin: "50px auto" }}>
+    <div className="container">
       <h2>Register</h2>
 
       <form onSubmit={handleRegister}>
         <input
           type="text"
-          placeholder="Enter name"
+          placeholder="Name"
           value={name}
           onChange={(e) => setName(e.target.value)}
           required
         />
-        <br /><br />
 
         <input
           type="email"
-          placeholder="Enter email"
+          placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
         />
-        <br /><br />
 
         <input
           type="password"
-          placeholder="Enter password"
+          placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        <br /><br />
 
         <button type="submit">Register</button>
       </form>
+
+      <p>
+        Already have an account? <Link to="/login">Login</Link>
+      </p>
     </div>
   );
 }
